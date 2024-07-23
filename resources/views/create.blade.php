@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="container">
+        <h1>Add</h1>
     <form action="{{ route('store') }}" method="POST" >
         @csrf
         <div class="form-group">

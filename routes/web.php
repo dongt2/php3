@@ -15,22 +15,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "trang chu";
+//Route::get('/', function () {
+//    return "trang chu";
+//});
+
+
+Route::get('test', function () {
+    return view('admin.product.list-product');
+});
+
+Route::prefix('product')
+    ->as('product.')
+    ->group(function (){
+
+    Route::get('/',[ProductController::class,'index'])->name('product');
+
+    Route::get('create',[ProductController::class,'create'])->name('create');
+    Route::post('store',[ProductController::class,'store'])->name('store');
+
+    Route::get('show/{id}',         [ProductController::class, 'show'])->name('show');
+
+    Route::get('{id}/edit',         [ProductController::class, 'edit'])->name('edit');
+    Route::post('update',       [ProductController::class, 'update'])->name('update');
+
+    Route::get('{id}/destroy',      [ProductController::class, 'destroy'])->name('destroy');
 });
 
 
-Route::get('product',[ProductController::class,'index'])->name('product');
-
-Route::get('create',[ProductController::class,'create'])->name('create');
-Route::post('store',[ProductController::class,'store'])->name('store');
-
-Route::get('show/{id}',         [ProductController::class, 'show'])->name('show');
-
-Route::get('{id}/edit',         [ProductController::class, 'edit'])->name('edit');
-Route::post('update',       [ProductController::class, 'update'])->name('update');
-
-Route::get('{id}/destroy',      [ProductController::class, 'destroy'])->name('destroy');
-
-Route::get('search', [ProductController::class, 'search'])->name('search');
 

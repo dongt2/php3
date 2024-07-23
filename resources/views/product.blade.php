@@ -12,7 +12,7 @@
 <body class="container">
 <h1>Thong tin sinh vien</h1>
 
-<a href="{{ route('create') }}">Add</a>
+<a class="btn btn-primary" href="{{ route('create') }}">Add</a>
 <table class="table">
     <thead>
     <tr>
@@ -37,7 +37,7 @@
             <td>{{ $product->create_at }}</td>
             <td>{{ $product->update_at }}</td>
             <td>
-                <a href="{{ route('edit', $product->id) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('edit', $product->id) }}" class="btn btn-warning">Edit</a>
                 <a href="{{ route('destroy', $product->id) }}" class="btn btn-danger" onclick="confirm('Ban co muon xoa khong')">
                     Delete
                 </a>

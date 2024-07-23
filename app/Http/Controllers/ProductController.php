@@ -13,12 +13,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::table('product')
-            ->join('category', 'product.category_id', '=', 'category.id')
-            ->select('product.*', 'category.name as category_name')
+        $products = DB::table('products')
+            ->join('category', 'products.category_id', '=', 'category.id')
+            ->select('products.*', 'category.name as category_name')
             ->orderBy('view', 'desc')
             ->get();
-        return view('product', compact('products'));
+        return view('products', compact('products'));
     }
 
     /**
@@ -47,8 +47,8 @@ class ProductController extends Controller
         ];
 
 //        dd($data);
-        DB::table('product')->insert($data);
-        return redirect()->route('product');
+        DB::table('products')->insert($data);
+        return redirect()->route('products');
     }
 
     /**
@@ -64,9 +64,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = DB::table('product')->where('id', $id)->first();
+        $products = DB::table('products')->where('id', $id)->first();
         $category = DB::table('category')->select('id', 'name')->get();
-        return view('edit', compact('product', 'category'))->with(['product' => $product, 'category' => $category]);
+        return view('edit', compact('products', 'category'))->with(['products' => $products, 'category' => $category]);
     }
 
     /**
@@ -81,8 +81,8 @@ class ProductController extends Controller
             'view' => $request->view,
             'update_at' => Carbon::now()
         ];
-        DB::table('product')->where('id', $request->id)->update($data);
-        return redirect()->route('product');
+        DB::table('products')->where('id', $request->id)->update($data);
+        return redirect()->route('products');
 
     }
 
@@ -91,8 +91,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        DB::table('product')->where('id', $id)->delete();
-        return redirect()->route('product');
+        DB::table('products')->where('id', $id)->delete();
+        return redirect()->route('products');
 
     }
 

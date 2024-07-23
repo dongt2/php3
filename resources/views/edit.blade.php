@@ -11,6 +11,7 @@
 </head>
 <body>
 <div class="container">
+    <h1>Update {{ $product->name }}</h1>
     <form action="{{ route('update')}}" method="POST" >
         @csrf
         <input type="hidden" name="id" value="{{ $product->id }}">
